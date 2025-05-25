@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "tavily-mcp-server": {
+      "enabled": false,
+      "transport": "stdio",
+      "description": "tavily-mcp",
+      "registryUrl": "",
+      "command": "npx",
+      "args": [
+        "-y",
+        "tavily-mcp@0.1.4"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "tvly-dev-……"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "transport": "stdio",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    },
+    "MCP-HUB": {
+      "description": "test",
+      "transport": "sse",
+      "enabled": false,
+      "timeout": 60,
+      "url": "http://localhost:3000/sse",
+      "headers": {}
+    }
+  }
+}

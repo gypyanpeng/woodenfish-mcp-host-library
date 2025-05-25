@@ -1,0 +1,55 @@
+{
+  "activeProvider": "ollama",
+  "configs": {
+    "ollama": {
+      "model": "qwen3:1.7b",
+      "model_provider": "ollama",
+      "base_url": "http://localhost:11434",
+      "streaming": true,
+      "max_tokens": 4096,
+      "tools_in_prompt": true,
+      "configuration": {
+        "temperature": 0.6
+      }
+    },
+    "zhipu_glm4": {
+      "model": "GLM-4-Flash",
+      "model_provider": "openai_compatible",
+      "streaming": true,
+      "max_tokens": 4096,
+      "tools_in_prompt": false,
+      "api_key": "your api key",
+      "configuration": {
+        "base_url": "https://open.bigmodel.cn/api/paas/v4/",
+        "temperature": 0.6
+      },
+      "default_headers": {}
+    },
+    "openrouter": {
+      "model": "deepseek/deepseek-r1:free",
+      "model_provider": "openai_compatible",
+      "streaming": true,
+      "max_tokens": 4096,
+      "tools_in_prompt": false,
+      "api_key": "your api key",
+      "configuration": {
+        "base_url": "https://openrouter.ai/api/v1/",
+        "temperature": 0.6
+      },
+      "default_headers": {}
+    },
+    "modelscope": {
+      "model": "Qwen/Qwen3-30B-A3B",
+      "model_provider": "openai_compatible",
+      "streaming": true,
+      "max_tokens": 4096,
+      "tools_in_prompt": true,
+      "api_key": "your api key",
+      "configuration": {
+        "base_url": "https://api-inference.modelscope.cn/v1/",
+        "temperature": 0.6
+      }
+    }
+  },
+  "enable_tools": true
+}
