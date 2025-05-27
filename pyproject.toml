@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "woodenfish-mcp-host"
-version = "0.2.0"
+version = "0.1"
 requires-python = ">=3.12"
 dependencies = [
     "langchain-anthropic>=0.3.13",
