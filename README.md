@@ -78,19 +78,6 @@ pip install -e ./woodenfish-mcp-host-library
         "temperature": 0.6 // 例如，ollama 提供商的 temperature 参数。
       }
     },
-    "zhipu_glm4": { // 以智谱 GLM4 为例
-      "model": "GLM-4-Flash", // 【必填】模型名称
-      "model_provider": "openai_compatible", // 【必填】如果模型提供商兼容 OpenAI API，使用此标识符。
-      "streaming": true, // 【选填】是否启用流式传输。
-      "max_tokens": 4096, // 【选填】最大 token 数。
-      "tools_in_prompt": false, // 【选填】是否将工具 schema 包含在 prompt 中。智谱 GLM-4-Flash 支持工具调用，这里设为 false 可能是因为采用其他方式传递工具信息或是一个示例。
-      "api_key": "your api key", // 【必填】调用该模型所需的 API 密钥。请替换为你的真实密钥。
-      "configuration": { // 【选填】额外配置参数。
-        "base_url": "https://open.bigmodel.cn/api/paas/v4/", // 智谱的模型 API 地址。
-        "temperature": 0.6 // 温度参数。
-      },
-      "default_headers": {} // 【选填】调用 API 时需要添加的额外 HTTP 头。
-    },
     "openrouter": { // 以 OpenRouter 为例，它聚合了多种模型。
       "model": "deepseek/deepseek-r1:free", // 【必填】在 OpenRouter 上选择的模型名称。
       "model_provider": "openai_compatible", // 【必填】OpenRouter 兼容 OpenAI API。
@@ -104,19 +91,6 @@ pip install -e ./woodenfish-mcp-host-library
       },
       "default_headers": {} // 【选填】额外 HTTP 头。
     },
-    "modelscope": { // 以 ModelScope 为例
-      "model": "Qwen/Qwen3-30B-A3B", // 【必填】在 ModelScope 上选择的模型名称。
-      "model_provider": "openai_compatible", // 【必填】ModelScope 兼容 OpenAI API。
-      "streaming": true, // 【选填】是否启用流式传输。
-      "max_tokens": 4096, // 【选填】最大 token 数。
-      "tools_in_prompt": true, // 【选填】是否将工具 schema 包含在 prompt 中。
-      "api_key": "your api key", // 【必填】ModelScope API 密钥。
-      "configuration": { // 【选填】额外配置参数。
-        "base_url": "https://api-inference.modelscope.cn/v1/", // ModelScope API 地址。
-        "temperature": 0.6 // 温度参数。
-      }
-    }
-  },
   "enable_tools": true // 【选填】全局开关，是否启用工具调用功能。设为 false 会禁用所有工具的使用。
 }
 ```
