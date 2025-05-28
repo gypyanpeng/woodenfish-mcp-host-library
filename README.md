@@ -65,33 +65,33 @@ pip install -e ./woodenfish-mcp-host-library
 
 ```json
 {
-  "activeProvider": "ollama", // 【必填】当前激活的模型提供商的名称。必须是 "configs" 中定义的一个 key。
-  "configs": { // 【必填】一个字典，包含了各种模型提供商的具体配置。
-    "ollama": { // 以 ollama 为例，这是一个具体的模型提供商配置。
-      "model": "qwen3:1.7b", // 【必填】模型名称。具体名称取决于你使用的提供商和安装的模型。
-      "model_provider": "ollama", // 【必填】模型提供商的内部标识符，用于库识别如何与该模型交互。
-      "base_url": "http://localhost:11434", // 【选填】模型服务的基地址。本地模型或某些 API 可能需要指定。
-      "streaming": true, // 【选填】是否启用流式传输。设置为 true 可以逐字接收 AI 回复，提供更好的用户体验。
-      "max_tokens": 4096, // 【选填】模型生成回复的最大 token 数。
-      "tools_in_prompt": true, // 【选填】是否将工具 schema 包含在发送给模型的 prompt 中。对于支持 Function Calling 的模型通常设为 true。
-      "configuration": { // 【选填】一个字典，包含传递给底层 LangChain 模型对象的额外配置参数。具体参数取决于 model_provider。
-        "temperature": 0.6 // 例如，ollama 提供商的 temperature 参数。
+  "activeProvider": "ollama", 
+  "configs": { 
+    "ollama": { 
+      "model": "qwen3:1.7b", 
+      "model_provider": "ollama", 
+      "base_url": "http://localhost:11434", 
+      "streaming": true, 
+      "max_tokens": 4096, 
+      "tools_in_prompt": true, 
+      "configuration": { 
+        "temperature": 0.6 
       }
     },
-    "openrouter": { // 以 OpenRouter 为例，它聚合了多种模型。
-      "model": "deepseek/deepseek-r1:free", // 【必填】在 OpenRouter 上选择的模型名称。
-      "model_provider": "openai_compatible", // 【必填】OpenRouter 兼容 OpenAI API。
-      "streaming": true, // 【选填】是否启用流式传输。
-      "max_tokens": 4096, // 【选填】最大 token 数。
-      "tools_in_prompt": false, // 【选填】是否将工具 schema 包含在 prompt 中。
-      "api_key": "your api key", // 【必填】OpenRouter API 密钥。
-      "configuration": { // 【选填】额外配置参数。
-        "base_url": "https://openrouter.ai/api/v1/", // OpenRouter API 地址。
-        "temperature": 0.6 // 温度参数。
+    "openrouter": { 
+      "model": "deepseek/deepseek-r1:free", 
+      "model_provider": "openai_compatible", 
+      "streaming": true, 
+      "max_tokens": 4096, 
+      "tools_in_prompt": false, 
+      "api_key": "your api key", 
+      "configuration": { 
+        "base_url": "https://openrouter.ai/api/v1/", 
+        "temperature": 0.6 
       },
-      "default_headers": {} // 【选填】额外 HTTP 头。
+      "default_headers": {} 
     },
-  "enable_tools": true // 【选填】全局开关，是否启用工具调用功能。设为 false 会禁用所有工具的使用。
+  "enable_tools": true 
 }
 ```
 
@@ -103,39 +103,38 @@ pip install -e ./woodenfish-mcp-host-library
 
 ```json
 {
-  "mcpServers": { // 【必填】一个字典，定义了不同的 MCP 工具服务器。
-    "tavily-mcp-server": { // 以 tavily-mcp-server 为例，这是一个工具服务器的配置。
-      "enabled": false, // 【必填】是否启用该工具服务器。设为 true 时库才能调用其提供的工具。
-      "transport": "stdio", // 【必填】通信方式。例如 "stdio" 表示通过标准输入输出通信。
-      "description": "tavily-mcp", // 【选填】工具服务器的描述。
-      "registryUrl": "", // 【选填】工具注册表的 URL，用于发现工具（目前可能未使用或用于特定场景）。
-      "command": "npx", // 【必填】启动工具服务器进程的命令。
-      "args": [ // 【选填】启动命令的参数列表。
-        "-y", // 例如 npx 的参数
-        "tavily-mcp@0.1.4" // 要运行的 npm 包。
+  "mcpServers": { 
+    "tavily-mcp-server": { 
+      "enabled": false, 
+      "transport": "stdio", 
+      "description": "tavily-mcp", 
+      "registryUrl": "", 
+      "command": "npx", 
+      "args": [ 
+        "-y", 
+        "tavily-mcp@0.1.4" 
       ],
-      "env": { // 【选填】启动工具进程时需要设置的环境变量。
-        "TAVILY_API_KEY": "tvly-dev-……" // 例如，Tavily 工具需要的 API Key。请替换为你的真实密钥。
+      "env": { 
+        "TAVILY_API_KEY": "tvly-dev-……" 
       },
-      "disabled": false, // 【已废弃/不推荐使用】请优先使用 enabled 字段。
-      "autoApprove": [] // 【选填】一个列表，列出哪些工具调用可以自动批准，无需用户确认。
+      "autoApprove": [] 
     },
-    "sequential-thinking": { // 以 sequential-thinking 工具服务器为例。
-      "command": "npx", // 【必填】启动命令。
-      "transport": "stdio", // 【必填】通信方式。
-      "args": [ // 【选填】启动命令的参数。
+    "sequential-thinking": { 
+      "command": "npx", 
+      "transport": "stdio", 
+      "args": [ 
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ],
-      "enabled": true // 【必填】是否启用。
+      "enabled": true 
     },
-    "MCP-HUB": { // 以 MCP-HUB 工具服务器为例，可能是一种集成了多个工具的服务。
-      "description": "test", // 【选填】描述。
-      "transport": "sse", // 【必填】通信方式，例如 "sse" (Server-Sent Events)。
-      "enabled": false, // 【必填】是否启用。
-      "timeout": 60, // 【选填】请求超时时间（秒）。
-      "url": "http://localhost:3000/sse", // 【必填】工具服务器的 URL。
-      "headers": {} // 【选填】调用 URL 时需要添加的额外 HTTP 头。
+    "MCP-HUB": { 
+      "description": "test",
+      "transport": "sse", 
+      "enabled": false, 
+      "timeout": 60, 
+      "url": "http://localhost:3000/sse", 
+      "headers": {} 
     }
   }
 }
